@@ -102,4 +102,62 @@ sayHelloV('YU','Hello')//Hello YU
 sayHelloV('YU')// YU　①はエラーになる
 //③はHey YUと表示される
 
+//名前とフォーマット関数を引数として受け取りフォーマットを実行してコンソール出力を行う関数を定義する
+function printName(firstName: string, formatter: (name: string) => string){
+    console.log(formatter(firstName))
+}
+//アロー関数とは
+
+//sanを末尾につける名前のフォーマットを定義する
+function formatName(name: string): string{
+    return '${name} san'
+}
+printName('Yu',formatName)// Yu san
+//アロー関数の場合
+let sayHello = (name: string): string => '${name} Hello'
+//let 変数名 = (引数:引数の型): string => JavaScriptの式
+
+//関数の型
+function genBirdsInfo(name: string): string[]{
+    return name.split(',')
+}
+//関数の型を利用
+//(x: string) => string[]
+function singBirds(birdInfo:(x: string) => string[]):string{//引数がstringで、string配列を返す関数を代入する
+    return birdInfo('hato,kizi')[0] + 'piyo piyo'//birdInfoはgenBirdsInfoを代入している
+}
+console.log(singBirds(genBirdsInfo))//"hato piyo piyo"
+//console.log(singBirds('Hey'))//型が合わないためエラーになる
+
+/*
+型
+JavaScriptと互換性のある関係上
+型推論がある
+*/
+let a = 100//今後number型として扱われる
+//型アサーション（型推論を上書きする）
+/*
+変数 = 値 as 型
+型アサーションが使用できるのは
+より具体的になる型または、より汎化される型になるとき
+ダメな時は一度anyに変えて２段階で行う
+*/
+const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement
+
+/*
+型エイリアス（型への名付け）
+type 型名 = 型
+*/
+type name = string
+type Point = {
+    x:number;
+    y:number;
+}
+function printPoint(point: Point){
+    console.log('x座標は${point.x}です')
+    console.log('y座標は${point.y}です')
+}
+printPoint({x:100,y:140})
+//型があっていてもプロパティ名が異なるとエラー
+//printPoint({z:40,a:21})
 
