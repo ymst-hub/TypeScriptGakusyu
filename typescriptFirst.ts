@@ -39,7 +39,7 @@ function calc(isSum: boolean){
 //例
 function hairetu(){
     const array: string[] = []
-    array.push('Yu')
+    array.push('You')
     //array.push(1)//配列の型が異なるためエラーになる
     //複数の型がある場合
     const Mac = ['Mac',2022]
@@ -62,7 +62,7 @@ var 変数:{キー名:型; キー名:型;~~~} = オブジェクト
 */
 function object(){
     const user:{name: string; year: number;} = {
-        name: 'Yu',
+        name: 'You',
         year: 8,
     }
     console.log(user.name)
@@ -96,11 +96,11 @@ function 関数名(引数:型,~~~):戻り値
 //function sayHelloV(name: string,greet: string):string{//greetが必須①
 //function sayHelloV(name: string,greet?: string):string{//greetがなくてもOK②
 function sayHelloV(name: string,greet: string = 'Hey'):string{//初期値の設定も可能③
-    return '${greet} ${name}'
+    return `${greet} ${name}`
 }
-sayHelloV('YU','Hello')//Hello YU
-sayHelloV('YU')// YU　①はエラーになる
-//③はHey YUと表示される
+sayHelloV('You','Hello')//Hello YU
+sayHelloV('You')// YU　①はエラーになる
+//③はHey Youと表示される
 
 //名前とフォーマット関数を引数として受け取りフォーマットを実行してコンソール出力を行う関数を定義する
 function printName(firstName: string, formatter: (name: string) => string){
@@ -110,9 +110,9 @@ function printName(firstName: string, formatter: (name: string) => string){
 
 //sanを末尾につける名前のフォーマットを定義する
 function formatName(name: string): string{
-    return '${name} san'
+    return `${name}san`//'と`は異なる。JSではshift + @の`を使う
 }
-printName('Yu',formatName)// Yu san
+printName('You',formatName)// You san
 //アロー関数の場合
 let sayHello = (name: string): string => '${name} Hello'
 //let 変数名 = (引数:引数の型): string => JavaScriptの式
@@ -134,7 +134,7 @@ console.log(singBirds(genBirdsInfo))//"hato piyo piyo"
 JavaScriptと互換性のある関係上
 型推論がある
 */
-let a = 100//今後number型として扱われる
+let v = 100//今後number型として扱われる
 //型アサーション（型推論を上書きする）
 /*
 変数 = 値 as 型
@@ -142,7 +142,7 @@ let a = 100//今後number型として扱われる
 より具体的になる型または、より汎化される型になるとき
 ダメな時は一度anyに変えて２段階で行う
 */
-const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement
+//const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement
 
 /*
 型エイリアス（型への名付け）
@@ -154,8 +154,8 @@ type Point = {
     y:number;
 }
 function printPoint(point: Point){
-    console.log('x座標は${point.x}です')
-    console.log('y座標は${point.y}です')
+    console.log(`x座標は${point.x}です`)
+    console.log(`y座標は${point.y}です`)
 }
 printPoint({x:100,y:140})
 //型があっていてもプロパティ名が異なるとエラー
@@ -181,9 +181,9 @@ interface Point2{
 
 }
 function printPoint2(point2: Point2){
-    console.log('x座標:${point.x}')
-    console.log('y座標:${point.y}')
-    console.log('z座標:${point.z}')
+    console.log(`x座標:${point2.x}`)
+    console.log(`y座標:${point2.y}`)
+    console.log(`z座標:${point2.z}`)
 }
 interface Point2{
     z:number;//後から追加も可能
@@ -193,4 +193,75 @@ interface Point2{
 printPoint2({x:100,y:200,z:400})//zを追加しているためOK
 
 //implements→クラスに実装を移譲できる
+
+/*
+クラス
+class クラス名{
+    フィールド1:型1;
+    フィールド2:型2;
+}
+*/
+class Point3{
+    x:number;
+    y:number;
+    //引数がない時の初期値
+    constructor(x:number = 0,y:number = 0){
+        this.x = x
+        this.y = y
+    }
+    moveX(n:number):void{
+        this.x += n
+    }
+    moveY(n:number):void{
+        this.y += n
+    }
+    
+}
+const point3 = new Point3
+point3.moveX(10)
+console.log(`${point3.x},${point3.y}`)
+
+//クラスへの実装の強制(インターフェースにimplements)
+interface IUser{
+    name:string;
+    age:number;
+    sayHello: () => string;//引数なしでstringを返す関数
+}
+class User implements IUser{
+    name:string;
+    age:number;
+    constructor(){
+        this.name = ''
+        this.age = 0
+    }
+    //インターフェースに含まれえるメソッドを実装しない場合エラーになる
+    sayHello():string{
+        return `こんにちは。私は${this.name}、${this.age}歳です`
+    }
+}
+const user = new User
+user.name = 'You'
+user.age = 23
+console.log(user.sayHello())
+
+//インターフェースをextendsで拡張する
+interface Colorful{
+    color:string;
+}
+interface Circle{
+    radius:number;
+}
+
+//複数のインターフェースを継承する
+interface ColorfulCircle extends Circle,Colorful{}
+
+const cc:ColorfulCircle = {
+    color:'赤',
+    radius:10,
+}
+
+/*
+インターフェースと型エイリアスの違い
+*/
+
 
