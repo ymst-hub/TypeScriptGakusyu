@@ -261,7 +261,31 @@ const cc:ColorfulCircle = {
 }
 
 /*
-インターフェースと型エイリアスの違い
+アクセス修飾子
+private そのクラス内でしかアクセス不可
+public クラス外からのアクセス許可
+protected クラス内、派生クラスからアクセス許可
 */
+class BasePoint3d{
+    public x:number;
+    private y:number;
+    protected z:number;
+}
+const basepoint = new BasePoint3d()
+basepoint.x//OK
+//basepoint.y//エラー
+//basepoint.z//エラー
+//クラスを継承した際のアクセス制御
+class ChildPoint extends BasePoint3d{
+    constructor(){
+        super()
+        this.x//OK
+        //this.y//NG
+        this.z//OK
+    }
+}
+
+
+
 
 
