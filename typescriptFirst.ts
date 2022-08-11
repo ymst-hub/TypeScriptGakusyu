@@ -161,3 +161,36 @@ printPoint({x:100,y:140})
 //型があっていてもプロパティ名が異なるとエラー
 //printPoint({z:40,a:21})
 
+//関数の型もエイリアスで定義可能
+type Formatter = (a: string) => string
+function printName2(firstName: string,formatter:Formatter){
+    console.log(formatter(firstName))
+}
+
+/*
+インターフェース
+interface 型名 {
+    プロパティ: 型1;
+    プロパティ2: 型2;
+}
+*/
+
+interface Point2{
+    x:number;
+    y:number;
+
+}
+function printPoint2(point2: Point2){
+    console.log('x座標:${point.x}')
+    console.log('y座標:${point.y}')
+    console.log('z座標:${point.z}')
+}
+interface Point2{
+    z:number;//後から追加も可能
+    a?:number;//なくてもOK
+}
+//printPoint2({x:100,y:200})//引数が足らないためエラーになる
+printPoint2({x:100,y:200,z:400})//zを追加しているためOK
+
+//implements→クラスに実装を移譲できる
+
