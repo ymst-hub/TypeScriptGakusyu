@@ -83,3 +83,98 @@ const userName = getProperty(user5,'name')
 インデックス型
 オブジェクトのプロパティが可変の時まとめられる
 */
+type Supportversions = {
+    [env: number]: boolean;
+}
+//stringのプロパティに定義した場合エラーに
+let version: Supportversions = {
+    102: false,
+    103: false,
+    104: true,
+    //'v105':false//エラーになる
+}
+
+/*
+readonly
+型エイリアス、インターフェース、クラスにおいてreadonlyは変更不可になる。
+const = 変数とか
+readonly = オブジェクトやクラスのプロパティに対して行うコンパイルエラーを検知できる
+*/
+type User6 = {
+    readonly name:string;
+    readonly gender:string;
+}
+let user6:User6 = {
+    name :'You',gender:'Men'
+}//初期化はOK
+//user6.gender = 'Women'//エラーになる
+//readonlyのジェネリック型もある
+type User7 = {
+    name:string;
+    gender:string;
+}
+type UserReadOnly = Readonly<User7>
+let user7:User7 = {
+    name : 'You',
+    gender: 'Men'
+}
+let userReadOnly:UserReadOnly = {
+    name: 'YOU',
+    gender: 'Men'
+}
+user7.name = 'aaa'//OK
+//readonly.name = 'aaa'//NG
+
+/*
+unknown
+anyと同じくどのような型にも代入できる
+でも、そのままは使えず、typeofやinstantofを使用する
+anyよりも安全
+*/
+const x:unknown = 123
+const y:unknown = 'hello'
+//console.log(x.toFixed(1))//エラーになる
+//console.log(y.toLowerCase)//エラーになる
+//型安全な状況で関数やプロパティにアクセスして実行する
+if(typeof x === 'number'){
+    console.log(x.toFixed(1))//OK
+}
+if(typeof y === 'string'){
+    console.log(y.toLowerCase())//OK
+}
+
+/*
+Async,Await
+非同期処理ができる
+*/
+function fetchFromServer(id:string): Promise<{success: boolean}>{
+    return new Promise(resolve =>{
+        setTimeout(() =>{
+            resolve({success: true})
+        },100)
+    })
+}
+//非同期処理を含むasync functionの戻り値はPromise(dartだとFuture)になる
+async function asyncFunc(): Promise<string> {
+    const result = await fetchFromServer('111')
+    return `The result:${result.success}`
+}
+//async function内でしかawaitは使用できない
+(async ()=>{
+    const result = await asyncFunc()
+    console.log(result)
+})()
+//Promiseとして使用する際はこの記述
+asyncFunc().then(result => console.log(result))
+/**
+ * 型定義ファイル
+ * Jsのコードを型定義ファイルを加えて型安全を確保し、Tsとして実行できるようにする
+ * /hello.jsなら/hello.d.tsで型定義ファイルとして機能する
+ * 
+ */
+
+/**
+ * メモ欄
+ * コーディングガイドを読むと良い
+ */
+
