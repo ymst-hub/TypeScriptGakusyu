@@ -12,7 +12,7 @@ import Counter from './components/Counter';
 import CounterReducer from './components/CounterReducer';
 import { Parent2 } from './components/FizzBuzz';
 import { Parent3 } from './components/Saibyouga';
-import { UseMemoSample } from './components/useMemoSample';
+import { UseMemoSample } from './components/UseMemoSample';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

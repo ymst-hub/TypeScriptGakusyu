@@ -38,6 +38,8 @@ components
     ContainerSampleContext.tsx
     Counter.tsx
     FizzBuzz,tsx
+    Saibyouga.tsx
+    useMemoSample.tsx
 
 
 表示する
@@ -110,6 +112,6 @@ React Hooks
     useMemo
     値をメモ化する
     第一引数には値を戻す関数、第二引数には依存配列を渡す
-    
+
 
 */
