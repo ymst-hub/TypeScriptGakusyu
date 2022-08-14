@@ -30,6 +30,8 @@ let MyReactComponent = <div id='myreact'></div>
 {}を使うとJSの値を埋め込むことができる
 const name = 'You'
 <span>こんにちは{name}さん</span>
+
+index,tsxに記載のコード
 components
     Hello.tsx
     Name.tsx
@@ -39,8 +41,12 @@ components
     Counter.tsx
     FizzBuzz,tsx
     Saibyouga.tsx
-    useMemoSample.tsx
-
+    UseMemoSample.tsx
+    Click.tsx
+    UseContext.tsx
+    UseRef.tsx
+    UseImperativeHandle.tsx
+    CustomHook.tsx
 
 表示する
 const root = ReactDOM.createRoot(コンテナ);
@@ -107,11 +113,41 @@ React Hooks
     関数コンポーネントをmemo関数でラップするとできる
 
     useCallback
-    関数をメモ化するために使用する
+    関数をメモ化するために使用する（同じ時は呼び出さない）
 
     useMemo
     値をメモ化する
     第一引数には値を戻す関数、第二引数には依存配列を渡す
+
+    useEffect
+    副作用を実行する
+    再描画が終わった後に処理が実行される。
+    第二引数に[]を渡すと再描画後１度しか実行されない
+
+    useLauoutEffect
+    DOM更新後、再描画前に行われる。
+
+    useContext
+    Contextから値を参照する。
+    useContext(context)とすることで値を取り出せる
+
+    useRef,useImperativeHandle
+    データ保持、DOM参照を行う
+    refのオブジェクトは再描画を行わない
+
+    useRef
+    再描画せずに保持できる
+
+    useImperativeHandle
+    親のrefに代入する値を設定するのに使う
+    親子にまたがるときに使用する
+    コンポーネントの関数を好きなタイミングで明示的に呼び出せる
+    多くの場合propsで代用できる。
+
+    カスタムフック
+    自分でフックを作れる。
+    use~~~の名前にする
+
 
 
 */

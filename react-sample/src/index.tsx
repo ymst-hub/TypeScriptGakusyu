@@ -13,6 +13,10 @@ import CounterReducer from './components/CounterReducer';
 import { Parent2 } from './components/FizzBuzz';
 import { Parent3 } from './components/Saibyouga';
 import { UseMemoSample } from './components/UseMemoSample';
+import { Clock } from './components/Clock';
+import { Parent4 } from './components/UseContext';
+import { ImageUploader } from './components/UseRef';
+import { Parent5 } from './components/UseImperativeHandle';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,6 +34,10 @@ root.render(
     <Parent2 />
     <Parent3 />
     <UseMemoSample />
+    <Clock />
+    <Parent4 />
+    <ImageUploader />
+    <Parent5 />
   </React.StrictMode>
 
 );
