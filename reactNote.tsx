@@ -148,6 +148,8 @@ React Hooks
     自分でフックを作れる。
     use~~~の名前にする
 
-
-
+    useDebugValue
+    デバック用の関数
+    ReactDeveloperToolsへ渡す
+    ブラウザの拡張機能の支援ツールと組み合わせて使用する
 */

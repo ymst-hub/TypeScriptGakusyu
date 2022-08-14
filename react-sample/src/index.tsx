@@ -17,6 +17,7 @@ import { Clock } from './components/Clock';
 import { Parent4 } from './components/UseContext';
 import { ImageUploader } from './components/UseRef';
 import { Parent5 } from './components/UseImperativeHandle';
+import { Input } from './components/CustomHook';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -38,6 +39,7 @@ root.render(
     <Parent4 />
     <ImageUploader />
     <Parent5 />
+    <Input />
   </React.StrictMode>
 
 );
