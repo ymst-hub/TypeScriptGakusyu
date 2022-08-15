@@ -1,6 +1,9 @@
 /*
 Reactの立ち上げ方
 npx create-react-app 名前
+cd 名前
+npm run start
+webページが開くため、OK
 
 構成
 Readme.md
