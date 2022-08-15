@@ -62,7 +62,16 @@ JS,TS、HTML、CSSを１つにまとめられる
     導入
         npm install --save styled-components
         npm install --save-dev @types/styled-components
-
+        
+        next.config.jsに以下の設定
+            // @type {import ('next').NextConfig}
+            const nextConfig = {
+                reactStrictMode: true,
+                compiler: {
+                    styledComponents: true,
+                },
+            } 
+            module.exports = nextConfig
 
 
 
