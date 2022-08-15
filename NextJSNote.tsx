@@ -190,6 +190,10 @@ pages/api以下においたファイルではAPI (jsonベース)を定義する
 ビルド時はAPIを使えないため、SSGのメソッド（getStaticPath、getStaticProps）からは
 呼び出せない
 
-
-
+環境変数
+.envファイル
+    ビルトイン環境変数のためのファイル
+    .env,.env.local,.env.${設定名},env.${環境名}.local
+    などで呼び出せる
+    
 */
