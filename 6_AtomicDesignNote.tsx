@@ -110,6 +110,10 @@ StoryBook
         コマンド
             npx sb init 組み込み
             npm run storybook　起動
+        
+        使い方
+        components/StyledButton/index.tsxを作成し、記述する。
+        StyledButtonはvarientによって色を制御できる
 
 
 
