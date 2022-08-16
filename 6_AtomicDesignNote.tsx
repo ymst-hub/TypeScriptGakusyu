@@ -58,6 +58,7 @@ CSS in JSと呼ばれるライブラリの１つ。
 コンポーネントと同じファイルでスタイルを実装できる。
 ユニークなクラス名が設定され、対象コンポーネントのみにスタイルが適用される
 JS,TS、HTML、CSSを１つにまとめられる
+propsでCSSを制御することもできる
 
     導入
         npm install --save styled-components
@@ -72,6 +73,46 @@ JS,TS、HTML、CSSを１つにまとめられる
                 },
             } 
             module.exports = nextConfig
+    
+    使い方
+        import styled from 'styled-components'
+        const 代入元 = styled.要素名`スタイル(
+            ${(props) => props.指定するもの}
+        )`
+
+        mixin
+        一度定義したCSSを使いまわせる
+        スタイルの箇所に${要素名}とする
+    
+        継承
+        要素名部分を代入元にするとそこから継承できる
+        現状のものを少し変化させるだけなら継承で作ったほうが良い
+
+        as
+        <代入元 as="タグなど">と宣言すると他の要素として表示できる
+
+        コンポーネントにスタイルを適用する
+        propsでclassNameを渡すこともできる
+        
+        Theme
+        使用する文字、スペースの大きさをあらかじめ別の場所で定義しておき、
+        propsでスタイルを設定する時に、ここから参照できる
+            使い方
+                theme.tsに設定する
+                ThemeProviderに渡す
+                    pages/_app.tsxにThemeProviderを設定する
+                    Contextで参照
+
+StoryBook
+    コンポーネントのカタログを構築できる
+    独立した環境でUIを確認できるようになるため、
+    デザイン上の問題による手戻りを減らすことができる
+        コマンド
+            npx sb init 組み込み
+            npm run storybook　起動
+
+
+
 
 
 
