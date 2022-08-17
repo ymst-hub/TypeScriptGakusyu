@@ -148,8 +148,14 @@ StoryBook
         package.jsonに記述
             "scripts"内に"test": "jest",を記述
         npm run test
-
-
+    
+    ファイルの作り方
+        テスト対象と同一ディレクトリにファイル名.test.tsxを作成する
+        beforeEach→テスト前の処理
+        afterEach→テスト後の処理
+        screen.getByLabelText→名前のラベルに対応する要素を取得する
+        toHaveValue→比較する
+        jestを用いるため、ググる
 
 
 
