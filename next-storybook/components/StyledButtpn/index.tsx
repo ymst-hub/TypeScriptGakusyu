@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Styled,{ css } from 'styled-components';
+import { useState } from 'react';
+import { type } from 'os';
 
 const variants = {
     primary:{
@@ -33,4 +35,43 @@ export const StyledButton = styled.button<StyledButtonProps>`
             border: ${style.border}
         `;
     }}
+    border-radius: 12px;
+    font-size:14px;
+    height:38px;
+    line-height:22px;
+    letter-spacing:0;
+    cusor:pointer;
+    &:focus {
+        outline:none;
+    }
 `
+export const StyledButton2 = styled.button<StyledButtonProps>`
+    ${({ variant }) => {
+        const style = variants[variant]
+        //cssを使う
+        return css`
+            color:${style.color};
+            background-color: ${style.backgroundColor};
+            border: ${style.border}
+        `;
+    }}
+    border-radius: 12px;
+    font-size:14px;
+    height:38px;
+    line-height:22px;
+    letter-spacing:0;
+    cusor:pointer;
+    &:focus {
+        outline:none;
+    }
+`
+
+type InputProps = JSX.IntrinsicElements['input'] & {
+    label: string
+}
+
+export const Input = (props: InputProps) => {
+    const {label,...rest} = props
+    
+}
+

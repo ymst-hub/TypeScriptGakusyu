@@ -2,22 +2,22 @@
 見た目と振る舞いを分離するためのコンポーネントのルール
 
 Presentational Component 以下PC
-propsで渡されたデータをもとに適切なUIパーツを表示することのみを行う
-内部に状態を持たず、API呼び出しなども行わない
-propsにのみ依存することでデザインにデバッグが容易になる
+    propsで渡されたデータをもとに適切なUIパーツを表示することのみを行う
+    内部に状態を持たず、API呼び出しなども行わない
+    propsにのみ依存することでデザインにデバッグが容易になる
 
 Container Compornent　以下　CC
-デザインは一切実装せず、ロジックのみを行う
-Hookを持たせて、状態に応じて表示内容を切り替える
-APIなども呼び出す
-Contextを参照して、Presentational Componentへ表示に必要なデータを渡す
+    デザインは一切実装せず、ロジックのみを行う
+    Hookを持たせて、状態に応じて表示内容を切り替える
+    APIなども呼び出す
+    Contextを参照して、Presentational Componentへ表示に必要なデータを渡す
 
 親子関係
-CC=親　→ props　→ PC=子
+    CC=親　→ props　→ PC=子
 
 Atomic Design
-階層にすることで一貫性を保ち管理しやすくする
-Reactコンポーネントと相性が良い→Rとして記載する
+    階層にすることで一貫性を保ち管理しやすくする
+    Reactコンポーネントと相性が良い→Rとして記載する
     最小
     Atoms
         最小の要素、これ以上分割不可能
@@ -53,12 +53,12 @@ Reactコンポーネントと相性が良い→Rとして記載する
     最大
 
 styled-components
-CSS in JSと呼ばれるライブラリの１つ。
-コンポーネントにスタイルを適用するために使う
-コンポーネントと同じファイルでスタイルを実装できる。
-ユニークなクラス名が設定され、対象コンポーネントのみにスタイルが適用される
-JS,TS、HTML、CSSを１つにまとめられる
-propsでCSSを制御することもできる
+    CSS in JSと呼ばれるライブラリの１つ。
+    コンポーネントにスタイルを適用するために使う
+    コンポーネントと同じファイルでスタイルを実装できる。
+    ユニークなクラス名が設定され、対象コンポーネントのみにスタイルが適用される
+    JS,TS、HTML、CSSを１つにまとめられる
+    propsでCSSを制御することもできる
 
     導入
         npm install --save styled-components
@@ -113,7 +113,41 @@ StoryBook
         
         使い方
         components/StyledButton/index.tsxを作成し、記述する。
-        StyledButtonはvarientによって色を制御できる
+            StyledButtonはvarientによって色を制御できる
+        stories/StyledButton.stories.tsxを作成する。
+            argTypesを指定すると、ボタンの振る舞いを決められる
+                onClickを設定すると、storyboard上でクリックされた時に表示ができる
+        actions
+            action(コンソールでの呼び出し名)
+            onClick内に処理を記述し、
+            タグの任意のところで呼び出す
+        controls
+            テキスト上などで、画面を変化させられる
+            argtypeを利用して、propsを制御したりする。
+        アドオン
+            機能を拡張できる
+            controlsやactionはaddon-essentialsに含まれる（最初からある）
+            追加する方法
+                ./storybook/main.jsのaddonにアドオンを指定する
+
+ユニットテスト
+    必要なパッケージ
+        npm install --save-dev jest @testing-library/react @testing-library/jest-dom jest-environment-jsdom
+    
+    使い方
+        jest.setup.jsを作成し、記述 import nextJest from "@testing-library/jest-dom/extend-expect";
+        jest.config.jsを作成し、記述
+            const nextJest = require('next/jest')
+            const createJestConfig = nextJest({dir: './'})
+            const customJestConfig = {
+            testPathIgnorePatterns: ['<rootDir>/.next/','<rootDir>/node_modules/'],
+            setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+            testEnvironment: 'jsdom',
+            }
+            module.exports = createJestConfig(customJestConfig)
+        package.jsonに記述
+            "scripts"内に"test": "jest",を記述
+        npm run test
 
 
 
