@@ -59,6 +59,7 @@ styled-components
     ユニークなクラス名が設定され、対象コンポーネントのみにスタイルが適用される
     JS,TS、HTML、CSSを１つにまとめられる
     propsでCSSを制御することもできる
+    レスポンシブデザインにも対応している
 
     導入
         npm install --save styled-components
