@@ -18,10 +18,23 @@ const getUser = async (
     /**
      * ユーザーID
      * サンプルレスポンス
-     */
     {
         "id": "1",
         "username":"you",
-        "displayName":""
+        "displayName":"YourName",
+        "email":"yyyymm@zz",
+        "profileImageUrl":"/users/1.png",
+        "description":"description space"
     }
+    */
+   return await fetcher(
+    `${context.apiRootUrl.replace(/\/$/g, '')}/users/$id`,
+    {
+        headers:{
+            Accept: 'application/json'
+        },
+    },
+   )
 }
+
+export default getUser
