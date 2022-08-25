@@ -4,7 +4,7 @@ export type Category = 'shoes' | 'clothes'|'book'
 export type Condition = 'new' | 'used'
 
 //ユーザー
-export type Product = {
+export type User = {
     id:number
     userName:string
     displayName:string
