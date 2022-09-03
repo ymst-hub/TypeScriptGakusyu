@@ -94,5 +94,8 @@ const LINE_HEIGHT_KEYS = new Set(['line-height'])
 
 /**
  * Themeに指定されたCSSプロパティの値に変換
- * 
+ * @param  propkey CSSプロパティ
+ * @param  value CSSプロパティの値
+ * @param  theme Apptheme
+ * @returns CSSプロパティの値
  */
